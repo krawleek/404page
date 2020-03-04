@@ -12,24 +12,24 @@ $(function() {
   }
 });
 
-$(function() {
+// Движение черепов
+        $(function() {
 
- var height = $('main').height();
-  var width = $('main').width();
- $('.skull').hover(function(){
-  
-   var skull_top = Math.random() * height;
-   var skull_left = Math.random() * width;
-   $(this).animate({'top': skull_top + 'px', 'left': skull_left + 'px'}, 1000);
-  
-  });
+         var height = $('main').height();
+          var width = $('main').width();
+         $('.skull').hover(function(){
 
-});
+           var skull_top = Math.random() * height;
+           var skull_left = Math.random() * width;
+           $(this).animate({'top': skull_top + 'px', 'left': skull_left + 'px'}, 1000);
 
+          });
 
-		$(function() {
+        });
 
-			var marquee = $("#marquee"); 
+// Анимация строк
+        function Animate(id) {
+			var marquee = $(id); 
 			marquee.css({"overflow": "hidden", "width": "100%"});
 
 			// �������� ��� ������ ����� span (IE �� ����� ���� � inline-block)
@@ -45,8 +45,15 @@ $(function() {
 				$(this).animate({ "margin-left": "-100%" }, 12000, 'linear', reset);
 			};
 
-			reset.call(marquee.find("div"));
+			reset.call(marquee.find("div"));  
+        }
 
+		$(function() {
+            Animate("#marquee");
+            
 		});
 
-  
+		$(function() {
+            Animate("#marquee1");
+
+		});
