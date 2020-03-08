@@ -55,7 +55,7 @@ function Animate(id) {
   marquee.css({"overflow": "hidden", "width": "100%"});
  
   marquee.wrapInner("<span>");
-  marquee.find("span").css({ "width": "50%", "text-align":"center" }); 
+  marquee.find("span").css({ "width": "50%", "text-align":"center", "display":"inline-block" }); 
   marquee.append(marquee.find("span").clone()); 
 
   marquee.wrapInner("<div>");
