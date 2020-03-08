@@ -7,12 +7,10 @@ $(function() {
   var max_width = $('main').width();
   var skull_count = Math.floor((max_height * max_width) / 2500);
 
-  var sum = max_height * max_width;
-  console.log(max_height + " - " + max_width + ": " + sum + " count " + skull_count);
   for (var i = 0; i < skull_count; i++) {
 
     var skull_top = 80 + Math.random() * (max_height - 80);
-    var skull_left = Math.random() * max_width;
+    var skull_left = Math.random() * (max_width - 80);
     var skull_rotate = Math.random() * 360;
     $('main').append('<div class="skull" style="top:' + skull_top + 'px; left: ' + skull_left + 'px; transform: rotate(' + skull_rotate + 'deg);"></div>');
 
@@ -29,7 +27,7 @@ $(function() {
     var max_height = $('main').height();
     var max_width = $('main').width();
     var skull_top = 80 + Math.random() * (max_height - 80);
-    var skull_left = Math.random() * max_width;
+    var skull_left = Math.random() * (max_width - 80);
 
     if (!$(this).hasClass('fly')) {
 
@@ -55,11 +53,10 @@ function Animate(id) {
 
   var marquee = $(id); 
   marquee.css({"overflow": "hidden", "width": "100%"});
-
-  // �������� ��� ������ ����� span (IE �� ����� ���� � inline-block)
+ 
   marquee.wrapInner("<span>");
   marquee.find("span").css({ "width": "50%", "text-align":"center" }); 
-  marquee.append(marquee.find("span").clone()); // ��� � ��� ��� span � �������
+  marquee.append(marquee.find("span").clone()); 
 
   marquee.wrapInner("<div>");
   marquee.find("div").css("width", "200%");
