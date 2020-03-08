@@ -2,58 +2,85 @@ var $ = jQuery;
 $(document).ready();
 
 $(function() {
- var height = $('main').height();
-  var width = $('main').width();
-  for (var i = 0; i < 300; i++) {
-   var skull_top = Math.random() * height;
-   var skull_left = Math.random() * width;
-   var skull_rotate = Math.random() * 360;
-  $('main').append('<div class="skull" style="top:' + skull_top + 'px; left: ' + skull_left + 'px; transform: rotate(' + skull_rotate + 'deg);"></div>');
+
+  var max_height = $('main').height();
+  var max_width = $('main').width();
+  var skull_count = Math.floor((max_height * max_width) / 2500);
+
+  var sum = max_height * max_width;
+  console.log(max_height + " - " + max_width + ": " + sum + " count " + skull_count);
+  for (var i = 0; i < skull_count; i++) {
+
+    var skull_top = 80 + Math.random() * (max_height - 80);
+    var skull_left = Math.random() * max_width;
+    var skull_rotate = Math.random() * 360;
+    $('main').append('<div class="skull" style="top:' + skull_top + 'px; left: ' + skull_left + 'px; transform: rotate(' + skull_rotate + 'deg);"></div>');
+
   }
+
 });
 
+
 // Движение черепов
-        $(function() {
+$(function() {
 
-         var height = $('main').height();
-          var width = $('main').width();
-         $('.skull').hover(function(){
+  $('.skull').hover(function(){
 
-           var skull_top = Math.random() * height;
-           var skull_left = Math.random() * width;
-           $(this).animate({'top': skull_top + 'px', 'left': skull_left + 'px'}, 1000);
+    var max_height = $('main').height();
+    var max_width = $('main').width();
+    var skull_top = 80 + Math.random() * (max_height - 80);
+    var skull_left = Math.random() * max_width;
 
-          });
+    if (!$(this).hasClass('fly')) {
 
-        });
+      $(this).addClass('fly');
+      $(this).animate(
+        {'top': skull_top + 'px', 'left': skull_left + 'px'}, 
+        500,
+        function(){
+          $(this).removeClass('fly');
+        }
+      );
+
+
+    }
+
+  });
+
+});
+
 
 // Анимация строк
-        function Animate(id) {
-			var marquee = $(id); 
-			marquee.css({"overflow": "hidden", "width": "100%"});
+function Animate(id) {
 
-			// �������� ��� ������ ����� span (IE �� ����� ���� � inline-block)
-			marquee.wrapInner("<span>");
-			marquee.find("span").css({ "width": "50%", "display": "inline-block", "text-align":"center" }); 
-			marquee.append(marquee.find("span").clone()); // ��� � ��� ��� span � �������
+  var marquee = $(id); 
+  marquee.css({"overflow": "hidden", "width": "100%"});
 
-			marquee.wrapInner("<div>");
-			marquee.find("div").css("width", "200%");
+  // �������� ��� ������ ����� span (IE �� ����� ���� � inline-block)
+  marquee.wrapInner("<span>");
+  marquee.find("span").css({ "width": "50%", "text-align":"center" }); 
+  marquee.append(marquee.find("span").clone()); // ��� � ��� ��� span � �������
 
-			var reset = function() {
-				$(this).css("margin-left", "0%");
-				$(this).animate({ "margin-left": "-100%" }, 12000, 'linear', reset);
-			};
+  marquee.wrapInner("<div>");
+  marquee.find("div").css("width", "200%");
 
-			reset.call(marquee.find("div"));  
-        }
+  var reset = function() {
 
-		$(function() {
-            Animate("#marquee");
-            
-		});
+    $(this).css("margin-left", "0%");
+    $(this).animate({ "margin-left": "-100%" }, 12000, 'linear', reset);
 
-		$(function() {
-            Animate("#marquee1");
+  };
 
-		});
+  reset.call(marquee.find("div"));
+
+}
+
+
+$(function() {
+  Animate("#marquee");
+});
+
+
+$(function() {
+  Animate("#marquee1");
+});
