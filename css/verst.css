@@ -2,6 +2,7 @@
  
  html, body {
     height: 100%;
+    cursor: url(../img/cursor.svg), auto;
 }
 
  header {
