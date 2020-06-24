@@ -59,7 +59,7 @@ function Animate(id) {
   marquee.append(marquee.find("span").clone()); 
 
   marquee.wrapInner("<div>");
-  marquee.find("div").css("width", "200%");
+  marquee.find("div").css("width", "550%");
 
   var reset = function() {
 
